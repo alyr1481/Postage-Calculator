@@ -64,8 +64,12 @@ var p = new Push({
 })
 
 // Server Live Message
-var svrLiveMsg = {
-  message: 'Server has started on port 3000',
+var svrLiveMsgLocal = {
+  message: 'Server has started on localhost port 3000',
+  title: 'PlatinumHPL Postage Calculator Server is Live'
+}
+var svrLiveMsgRemote = {
+  message: 'Server has started on '+process.env.IP+' port '+process.env.PORT ,
   title: 'PlatinumHPL Postage Calculator Server is Live'
 }
 
@@ -79,12 +83,15 @@ app.get('*', function (req,res){
 if (process.env.LOCAL_OR_REMOTE==1){
   app.listen(3000,function(){
     console.log("SERVER HAS STARTED!");
-    p.send(svrLiveMsg, function (err,result){
+    p.send(svrLiveMsgLocal, function (err,result){
       if (err) console.log(err);
-    })
+    });
   });
 } else{
   app.listen(process.env.PORT, process.env.IP,function(){
     console.log("SERVER HAS STARTED!");
+    p.send(svrLiveMsgRemote, function (err,result){
+      if (err) console.log(err);
+    });
   });
 }
