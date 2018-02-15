@@ -11,7 +11,8 @@ var compression = require('compression'),
     passport = require('passport'),
     LocalStratergy = require('passport-local'),
     methodOverride = require('method-override'),
-    session = require('express-session');
+    session = require('express-session'),
+    Push = require('pushover-notifications');
 
 
 var indexRoutes = require('./routes/index');
@@ -56,6 +57,18 @@ app.use(function(req,res,next){
   next();
 });
 
+// Initiate Pushover
+var p = new Push({
+  user: process.env['PUSHOVER_USER'],
+  token: process.env['PUSHOVER_TOKEN'],
+})
+
+// Server Live Message
+var svrLiveMsg = {
+  message: 'Server has started on port 3000',
+  title: 'PlatinumHPL Postage Calculator Server is Live'
+}
+
 // Routes
 app.use('/', indexRoutes);
 
@@ -66,6 +79,9 @@ app.get('*', function (req,res){
 if (process.env.LOCAL_OR_REMOTE==1){
   app.listen(3000,function(){
     console.log("SERVER HAS STARTED!");
+    p.send(svrLiveMsg, function (err,result){
+      if (err) console.log(err);
+    })
   });
 } else{
   app.listen(process.env.PORT, process.env.IP,function(){
