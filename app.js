@@ -85,6 +85,7 @@ if (process.env.LOCAL_OR_REMOTE==1){
     console.log("SERVER HAS STARTED!");
     p.send(svrLiveMsgLocal, function (err,result){
       if (err) console.log(err);
+      else console.log("Pushover Notification Sent");
     });
   });
 } else{
@@ -92,6 +93,7 @@ if (process.env.LOCAL_OR_REMOTE==1){
     console.log("SERVER HAS STARTED!");
     p.send(svrLiveMsgRemote, function (err,result){
       if (err) console.log(err);
+      else console.log("Pushover Notification Sent");
     });
   });
 }
