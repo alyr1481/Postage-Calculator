@@ -9,7 +9,7 @@ var compression = require('compression'),
     expressSanitizer = require("express-sanitizer"),
     // flash = require("connect-flash"),
     passport = require('passport'),
-    LocalStratergy = require('passport-local'),
+    LocalStrategy = require('passport-local'),
     methodOverride = require('method-override'),
     session = require('express-session'),
     Push = require('pushover-notifications');
@@ -97,3 +97,8 @@ if (process.env.LOCAL_OR_REMOTE==1){
     });
   });
 }
+
+brap = "yarp"
+
+
+

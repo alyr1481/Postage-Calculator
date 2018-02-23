@@ -8,3 +8,24 @@
 #labelMargin{
   margin-bottom:5.5px;
 }
+
+.vert-center{
+  /*text-align: center;*/
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.imageHelper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex; /* add */
+  justify-content: center; /* add to align horizontal */
+  align-items: center; /* add to align vertical */
+  padding: 0px;
+}
